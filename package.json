@@ -1,0 +1,17 @@
+{
+  "name": "pdf-ocr-browser",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^3.11.174",
+    "tesseract.js": "^4.1.1",
+    "jspdf": "^2.5.1"
+  },
+  "devDependencies": {
+    "vite": "^4.4.9"
+  }
+}
