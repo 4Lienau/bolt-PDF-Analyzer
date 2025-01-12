@@ -41,15 +41,17 @@ async function withRetry(fn, retryAttempts = 3) {
 // Cloud Vision API call
 const rateLimiter = new RateLimiter(1000);
 
+// Get API key from environment variable
+const API_KEY = import.meta.env.VITE_GOOGLE_CLOUD_API_KEY;
+
 async function callCloudVisionAPI(imageBase64) {
   await rateLimiter.waitForNext();
-  
-  const apiKey = configManager.get('apiKey');
-  if (!apiKey) {
-    throw new Error('Google Cloud Vision API key is not configured. Please set it in the configuration panel.');
+
+  if (!API_KEY) {
+    throw new Error('Google Cloud Vision API key is not configured');
   }
 
-  const response = await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`, {
+  const response = await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${API_KEY}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
